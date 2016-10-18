@@ -1,0 +1,26 @@
+
+<% if logged_in? %>
+  <% if current_user.id != auction.user_id %>
+      <% if !bid %>
+        <h3>Place A Bid!</h3>
+          <form class='bidding-form' action='/auctions/<%= auction.id%>/bid' method='POST'>
+            <label for='ammount'>Ammount to bid:</label><br>
+            <input type='number' name='ammount' min='0'>
+            <button>Place your bid!</button>
+          </form>
+      <% else %>
+        <p>You already bid on this item!<br>
+        You bid $<%= bid.ammount %> on <%= date_formatter(bid.created_at, 'human') %>.</p>
+        <div class='options'>
+          <form action='/auctions/<%= auction.id %>/bids/<%= bid.id %>' method='POST' class = 'delete'>
+             <input type='hidden' name='_method' value='DELETE'>
+            <button>DELETE</button>
+          </form>
+        </div>
+      <% end %>
+    <% else %>
+    <p>You cannot bid on your own items</p>
+  <% end %>
+  <% else %>
+  <p>Log In if you would like to bid.</p>
+<% end %>

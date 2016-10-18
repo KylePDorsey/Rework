@@ -1,0 +1,10 @@
+<h3> Login: </h3>
+<%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+<form action="/login" method="POST">
+  <label for='email'> Email: </label><br>
+  <input type="email" name="email"><br>
+  <br>
+  <label> Password: </label><br>
+  <input type="password" name="password" ><br><br>
+  <input type="submit" value="Login!">
+</form>

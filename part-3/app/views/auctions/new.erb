@@ -1,0 +1,15 @@
+<p> Create a new Auction: </p>
+<%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+<form action="/auctions" method="POST">
+  <label for='name'> Item Name: </label><br>
+    <input type="text" name="auction[name]"><br>
+  <label for='description'> Item Description: </label><br>
+    <input type="text" name="auction[description]"><br>
+  <label for='condition'>Condition:</label><br>
+    <input type='text' name='auction[condition]'><br>
+  <label for='start_time'> Start Time: </label><br>
+    <input type="datetime-local" name="auction[start_time]"><br><br>
+  <label for='end_time'> End Time: </label><br>
+    <input type="datetime-local" name="auction[end_time]"><br><br>
+  <input type="submit" value="Add New Auction">
+</form

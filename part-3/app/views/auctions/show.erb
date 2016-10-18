@@ -1,0 +1,15 @@
+<h2 class='auction-name'><%= @auction.name %></h2>
+<div class='container auction'>
+  <h3>Description:</h3>
+  <%= @auction.description %>
+  <h3>Condition:</h3>
+  <%= @auction.condition %>
+  <h3>End Time:</h3>
+  Auction ends on <%= date_formatter(@auction.end_time, 'human') %>
+</div>
+<div class='container bidding'>
+  <%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+  <h3>Number of bids:</h3>
+  <p><%= @auction.bids.count %></p>
+  <%= erb :'/auctions/_bidding', layout: false, locals: {auction: @auction, bid: @bid} %>
+</div>

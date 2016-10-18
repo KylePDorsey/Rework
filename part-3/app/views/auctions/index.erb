@@ -1,0 +1,11 @@
+<%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+<h2 id="auction-header">Auctions:</h2>
+<% if @auctions %>
+  <ul class='auctions'>
+    <% @auctions.each do |auction| %>
+    <li><a href="/auctions/<%= auction.id %>"><%= auction.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No auctions yet! Register to add one!</h3>
+<% end %>

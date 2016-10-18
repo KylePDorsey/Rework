@@ -1,0 +1,48 @@
+<h3>Welcome to your profile page!</h3>
+<div class='conatiner auctions'>
+<%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+<% if @auctions %>
+	<h4>Your Auctions</h4>
+		<ul>
+			<% @auctions.each do |auction| %>
+				<div class='auction-item'>
+					<li><%= auction.name %></li>
+					<a href="/auctions/<%= auction.id %>/edit">Edit Auction</a>
+						<form action='/auctions/<%= auction.id %>' method='POST'>
+						  <input type='hidden' name='_method' value='DELETE'>
+						  <input type="submit" value="Delete">
+						</form>
+				</div>
+			<% end %>
+		</ul>
+	<% else %>
+	<p>You do not have any auctions</p>
+<% end %>
+</div>
+
+<div class="conatiner bids">
+<% if @bids %>
+	<h4>Your Bids</h4>
+		<ul>
+			<% @bids.each do |bid| %>
+				<li>Item: <%= bid.auction.name.capitalize %> <br>Your current Bid: <%= bid.ammount %></li>
+			<% end %>
+		</ul>
+
+	<% else %>
+	<p>You do not have any bids</p>
+<% end %>
+</div>
+
+<div class='container won'>
+  <h4>Auctions you've won:</h4>
+  <% if !current_user.winnings.empty? %>
+  <% current_user.winnings.each do |win| %>
+        <li class='win-item'>
+          <a href='/users/<%=win.auction.user_id%>/auctions/<%=win.auction.id%>'><%= win.auction.name %></a>
+        </li>
+      <% end %>
+  <% else %>
+  <h5>Nothing here yet</h5>
+  <% end %>
+</div>

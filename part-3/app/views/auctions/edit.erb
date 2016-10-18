@@ -1,0 +1,16 @@
+<h3> Edit your Auction: </h3>
+<%= erb :'/_errors', layout: false, locals: {errors: @errors} %>
+<form action="/auctions/<%= @auction.id %>" method="POST">
+  <input type='hidden' name='_method' value='PUT'>
+  <label for='item_name'> Item Name: </label><br>
+    <input type="text" name="auction[name]" value ='<%= @auction.name %>'><br>
+  <label for='description'> Description: </label><br>
+    <input type="text" name="auction[description]" value ='<%= @auction.description %>'><br>
+  <label for='condition'>Condition:</label><br>
+    <input type='text' name='auction[condition]' value ='<%= @auction.condition %> '><br>
+  <label for='start_time'> Start Time: </label><br>
+    <input type="datetime-local" name="auction[start_time]" value ='<%= @auction.start_time %>'><br><br>
+  <label for='end_time'> End Time: </label><br>
+    <input type="datetime-local" name="auction[end_time]" value ='<%= @auction.end_time %>'><br><br>
+  <input type="submit" value="Edit Your Auction">
+</form>
